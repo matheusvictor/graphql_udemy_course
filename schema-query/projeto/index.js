@@ -1,12 +1,13 @@
 const { ApolloServer, gql } = require('apollo-server');
 
 const typeDefs = gql`
+    scalar Date
 
     # Pontos de entrada para a API
     # Query é um tipo reservado no GraphQL
     type Query {
         hello: String
-        dateNow: String
+        dateNow: Date
     }
 `;
 
@@ -16,14 +17,7 @@ const resolvers = {
             return "Hello world!"
         },
         dateNow() {
-            const dT = new Date()
-                            .toLocaleDateString("pt-BR", {
-                                weekday: 'long',
-                                year: 'numeric',
-                                month: 'numeric',
-                                day: 'numeric'
-                            });
-            return dT;
+            return new Date();
         }
     }
 };
