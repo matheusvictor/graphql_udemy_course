@@ -16,8 +16,8 @@ const typeDefs = gql`
         id: ID!
         name: String
         email: String!
-        idade: Int
-        salario: Float
+        age: Int
+        salary: Float
         vip: Boolean
     }
 `;
