@@ -6,7 +6,7 @@ const typeDefs = gql`
     # Query é um tipo reservado no GraphQL
     type Query {
         hello: String
-        timeNow: String
+        dateNow: String
     }
 `;
 
@@ -15,7 +15,7 @@ const resolvers = {
         hello() {
             return "Hello world!"
         },
-        timeNow() {
+        dateNow() {
             const dT = new Date()
                             .toLocaleDateString("pt-BR", {
                                 weekday: 'long',
