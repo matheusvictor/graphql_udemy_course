@@ -8,6 +8,17 @@ const typeDefs = gql`
     type Query {
         hello: String
         dateNow: Date
+        users: [User]
+    }
+
+    # Tipo personalizado
+    type User {
+        id: ID!
+        name: String
+        email: String!
+        idade: Int
+        salario: Float
+        vip: Boolean
     }
 `;
 
@@ -18,6 +29,18 @@ const resolvers = {
         },
         dateNow() {
             return new Date();
+        },
+        users() {
+            return [
+                {
+                    id: 1,
+                    email: "",
+                },
+                {
+                    id: 2,
+                    email: "",
+                }
+            ]
         }
     }
 };
