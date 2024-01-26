@@ -9,6 +9,7 @@ const typeDefs = gql`
         hello: String
         dateNow: Date
         users: [User]
+        productsWithDiscount: [Product]
     }
 
     # Tipo personalizado
@@ -20,13 +21,28 @@ const typeDefs = gql`
         salary: Float
         vip: Boolean
     }
+
+    type Product {
+        name: String!
+        price: Float!
+        discount: Float
+        priceWithDiscount: Float
+    }
 `;
 
 const resolvers = { 
 
     User: {
-        salary(parenteObj) {
-            return parenteObj.income;
+        salary(parentObj) {
+            return parentObj.income;
+        }
+    },
+    Product: {
+        priceWithDiscount(parentObj) {
+            if (parentObj.discount && parentObj.discount <= 100) {
+               return parentObj.price - (parentObj.price * (parentObj.discount/100));
+            }
+            return parentObj.price;
         }
     },
     Query: {
@@ -47,6 +63,19 @@ const resolvers = {
                     id: 2,
                     email: "",
                 }
+            ]
+        },
+        productsWithDiscount() {
+            return [
+                {
+                    name: "Laptop",
+                    price: 5000.0,
+                    discount: 10
+                },
+                {
+                    name: "PlayStation 5",
+                    price: 3000.0,
+                },
             ]
         }
     }
