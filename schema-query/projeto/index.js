@@ -23,6 +23,12 @@ const typeDefs = gql`
 `;
 
 const resolvers = { 
+
+    User: {
+        salary(parenteObj) {
+            return parenteObj.income;
+        }
+    },
     Query: {
         hello() {
             return "Hello world!"
@@ -35,6 +41,7 @@ const resolvers = {
                 {
                     id: 1,
                     email: "",
+                    income: 230.0,
                 },
                 {
                     id: 2,
