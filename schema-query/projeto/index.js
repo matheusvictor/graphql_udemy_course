@@ -6,12 +6,14 @@ const users = [
         name: "Matheus",
         email: "matheus@email.com",
         age: 25,
+        profile_id: 1,
     },
     {
         id: 2,
         name: "Maria",
         email: "maria@email.com",
         age: 25,
+        profile_id: 2,
     }
 ]
 
@@ -50,6 +52,7 @@ const typeDefs = gql`
         age: Int
         salary: Float
         vip: Boolean
+        profile: Profile
     }
 
     type Profile {
@@ -70,6 +73,11 @@ const resolvers = {
     User: {
         salary(parentObj) {
             return parentObj.income;
+        },
+        profile(user) {
+            const profileDescription = 
+                profileTypes.filter(p => p.id === user.profile_id)
+                return profileDescription ? profileDescription[0] : null;
         }
     },
     Product: {
