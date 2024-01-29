@@ -15,6 +15,17 @@ const users = [
     }
 ]
 
+const profileTypes = [
+    {
+        id: 1,
+        description: 'Default'
+    },
+    {
+        id: 2,
+        description: 'Admin'
+    }
+]
+
 const typeDefs = gql`
     scalar Date
 
@@ -25,6 +36,8 @@ const typeDefs = gql`
         dateNow: Date
         users: [User]
         user(id: Int!): User
+        profiles: [Profile]
+        profile(id: Int!): Profile
         productsWithDiscount: [Product]
         sortedNumbers: [Int!]!
     }
@@ -37,6 +50,11 @@ const typeDefs = gql`
         age: Int
         salary: Float
         vip: Boolean
+    }
+
+    type Profile {
+        id: Int!
+        description: String!
     }
 
     type Product {
@@ -70,22 +88,19 @@ const resolvers = {
             return new Date();
         },
         users() {
-            return [
-                {
-                    id: 1,
-                    email: "",
-                    income: 230.0,
-                },
-                {
-                    id: 2,
-                    email: "",
-                }
-            ]
+            return users;
         },
         user(_, args) {
             const selected = users.filter(u => u.id === args.id)
             console.log(selected)
             return selected ? selected[0] : null
+        },
+        profiles() {
+            return profileTypes;
+        },
+        profile(_, { id }){
+            const profile = profileTypes.filter(p => p.id === id)
+            return profile ? profile[0]: null;
         },
         productsWithDiscount() {
             return [
