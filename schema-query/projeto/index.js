@@ -10,6 +10,7 @@ const typeDefs = gql`
         dateNow: Date
         users: [User]
         productsWithDiscount: [Product]
+        sortedNumbers: [Int!]!
     }
 
     # Tipo personalizado
@@ -77,6 +78,15 @@ const resolvers = {
                     price: 3000.0,
                 },
             ]
+        },
+        sortedNumbers() {
+            const asc = (x, y) => x - y;
+            const generateRandomNumer = () =>  parseInt(Math.random() * 60 + 1);
+
+            return Array(6).fill(0)
+            .map(() => generateRandomNumer())
+            .map((n, _, arr) => arr.indexOf(n) === -1 ? n = generateRandomNumer : n)
+            .sort(asc)
         }
     }
 };
