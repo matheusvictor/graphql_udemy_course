@@ -1,5 +1,20 @@
 const { ApolloServer, gql } = require('apollo-server');
 
+const users = [
+    {
+        id: 1,
+        name: "Matheus",
+        email: "matheus@email.com",
+        age: 25,
+    },
+    {
+        id: 2,
+        name: "Maria",
+        email: "maria@email.com",
+        age: 25,
+    }
+]
+
 const typeDefs = gql`
     scalar Date
 
@@ -9,13 +24,14 @@ const typeDefs = gql`
         hello: String
         dateNow: Date
         users: [User]
+        user(id: Int!): User
         productsWithDiscount: [Product]
         sortedNumbers: [Int!]!
     }
 
     # Tipo personalizado
     type User {
-        id: ID!
+        id: Int!
         name: String
         email: String!
         age: Int
@@ -65,6 +81,11 @@ const resolvers = {
                     email: "",
                 }
             ]
+        },
+        user(_, args) {
+            const selected = users.filter(u => u.id === args.id)
+            console.log(selected)
+            return selected ? selected[0] : null
         },
         productsWithDiscount() {
             return [
