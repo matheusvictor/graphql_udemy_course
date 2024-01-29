@@ -1,0 +1,12 @@
+#import Profile from 'profile.graphql'
+
+# Tipo personalizado
+type User {
+    id: Int!
+    name: String
+    email: String!
+    age: Int
+    salary: Float
+    vip: Boolean
+    profile: Profile
+}

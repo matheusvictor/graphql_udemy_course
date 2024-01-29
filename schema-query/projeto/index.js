@@ -1,4 +1,5 @@
 const { ApolloServer, gql } = require('apollo-server');
+const { importSchema } = require('graphql-import');
 
 const users = [
     {
@@ -27,46 +28,6 @@ const profileTypes = [
         description: 'Admin'
     }
 ]
-
-const typeDefs = gql`
-    scalar Date
-
-    # Pontos de entrada para a API
-    # Query é um tipo reservado no GraphQL
-    type Query {
-        hello: String
-        dateNow: Date
-        users: [User]
-        user(id: Int!): User
-        profiles: [Profile]
-        profile(id: Int!): Profile
-        productsWithDiscount: [Product]
-        sortedNumbers: [Int!]!
-    }
-
-    # Tipo personalizado
-    type User {
-        id: Int!
-        name: String
-        email: String!
-        age: Int
-        salary: Float
-        vip: Boolean
-        profile: Profile
-    }
-
-    type Profile {
-        id: Int!
-        description: String!
-    }
-
-    type Product {
-        name: String!
-        price: Float!
-        discount: Float
-        priceWithDiscount: Float
-    }
-`;
 
 const resolvers = { 
 
@@ -134,6 +95,8 @@ const resolvers = {
         }
     }
 };
+
+const typeDefs = importSchema('./schemas/index.graphql');
 
 const server = new ApolloServer({
     typeDefs: typeDefs,

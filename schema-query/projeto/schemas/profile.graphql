@@ -1,0 +1,4 @@
+type Profile {
+    id: Int!
+    description: String!
+}
