@@ -1,17 +1,18 @@
-const { v4: uuidv4 } = require('uuid');
-
-const random_uuid = uuidv4();
+let id = 1;
+function nextId () {
+    return id++;
+}
 
 const users = [
     {
-        id: random_uuid,
+        id: nextId(),
         name: "Matheus",
         email: "matheus@email.com",
         age: 25,
         profile_id: 1,
     },
     {
-        id: random_uuid,
+        id: nextId(),
         name: "Maria",
         email: "maria@email.com",
         age: 25,
@@ -30,4 +31,8 @@ const profileTypes = [
     }
 ]
 
-module.exports = { users, profileTypes };
+module.exports = { 
+    users,
+    profileTypes,
+    nextId
+};

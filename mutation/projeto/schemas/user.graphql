@@ -2,18 +2,18 @@
 
 # Tipo personalizado
 type User {
-    id: ID!
-    name: String
-    email: String!
-    age: Int
-    salary: Float
-    vip: Boolean
-    profile: Profile
-    status: UserStatus
+  id: Int!
+  name: String
+  email: String!
+  age: Int
+  salary: Float
+  vip: Boolean
+  profile: Profile
+  status: UserStatus
 }
 
 enum UserStatus {
-    ACTIVE
-    INACTIVE
-    BLOCKED
+  ACTIVE
+  INACTIVE
+  BLOCKED
 }
