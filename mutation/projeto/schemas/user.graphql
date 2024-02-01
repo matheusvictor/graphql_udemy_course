@@ -2,7 +2,7 @@
 
 # Tipo personalizado
 type User {
-    id: Int!
+    id: ID!
     name: String
     email: String!
     age: Int
