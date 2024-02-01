@@ -1,12 +1,11 @@
 # Pontos de entrada para a API
 # Query é um tipo reservado no GraphQL
 type Query {
-    hello: String
-    dateNow: Date
-    users: [User]
-    user(id: Int!): User
-    profiles: [Profile]
-    profile(id: Int!): Profile
-    productsWithDiscount: [Product]
-    sortedNumbers: [Int!]!
+  hello: String
+  dateNow: Date
+  users: [User]
+  user(id: Int!): User
+  profiles: [Profile]
+  profile(id: Int!): Profile
+  sortedNumbers: [Int!]!
 }
