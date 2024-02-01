@@ -9,4 +9,11 @@ type User {
     salary: Float
     vip: Boolean
     profile: Profile
+    status: UserStatus
+}
+
+enum UserStatus {
+    ACTIVE
+    INACTIVE
+    BLOCKED
 }
