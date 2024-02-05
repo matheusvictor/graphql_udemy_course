@@ -31,5 +31,19 @@ module.exports = {
             const exclued = users.splice(index, 1);
             return exclued ? exclued[0] : null;
         }
+    }, 
+    updateUser(_, args) {
+       const index = users.findIndex(user => user.id === args.id);
+
+        if (index < 0) {
+            return null;
+        }
+
+        const userUpdated = {
+                ...users[index],
+                ...args // irá sobrescrever os valores do objeto user[index] para as mesmas chaves
+            }
+        users.splice(index, 1, userUpdated);
+        return userUpdated;
     }
 }
