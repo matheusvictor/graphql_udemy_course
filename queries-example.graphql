@@ -2,13 +2,17 @@ query {
   hello
   dateNow
   user(id: 1) {
-    id name
-  } 
+    id
+    name
+  }
   profile(id: 12) {
-    id description
+    id
+    description
   }
   users {
-    id name profile {
+    id
+    name
+    profile {
       description
     }
   }
@@ -17,8 +21,23 @@ query {
   }
 }
 
-
 fragment userFullInfo on User {
-    id name age email salary vip
-    profile { id description }
+  id
+  name
+  age
+  email
+  salary
+  vip
+  profile {
+    id
+    description
+  }
+}
+
+mutation {
+  newUser(name: "Matheus", email: "matheus@email.com", age: 25) {
+    id
+    name
+    email
+  }
 }
