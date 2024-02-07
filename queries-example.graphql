@@ -35,9 +35,18 @@ fragment userFullInfo on User {
 }
 
 mutation {
-  newUser(name: "Matheus", email: "matheus@email.com", age: 25) {
-    id
-    name
-    email
+  mutation {
+    newUser(userData: { name: "Matheus", email: "ma@gmail.com", age: 25 }) {
+      id
+      name
+      age
+    }
+
+    updateUser(id: 1, name: "Eu") {
+      id
+      name
+      email
+      age
+    }
   }
 }
