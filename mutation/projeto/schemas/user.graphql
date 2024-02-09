@@ -6,8 +6,6 @@ type User {
   name: String
   email: String!
   age: Int
-  salary: Float
-  vip: Boolean
   profile: Profile
   status: UserStatus
 }
