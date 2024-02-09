@@ -11,10 +11,16 @@ module.exports = {
     users() {
         return users;
     },
-    user(_, args) {
-        const selected = users.filter(u => u.id === args.id)
-        console.log(selected)
-        return selected ? selected[0] : null
+    user(_, {  filter }) {
+        if (!filter) return null;
+
+        const { id, email } = filter;
+        if (id) {
+            return users.filter(u => u.id === id)[0];
+        } else if (email) {
+            return users.filter(u => u.email === email)[0];
+        } 
+        return null;
     },
     profiles() {
         return profileTypes;
