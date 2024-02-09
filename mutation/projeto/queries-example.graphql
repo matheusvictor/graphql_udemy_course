@@ -1,13 +1,15 @@
 query {
-  hello
-  dateNow
-  user(id: 1) {
+  user(filter: { email: "matheus@email.com" }) {
     id
     name
+    email
   }
-  profile(id: 12) {
-    id
-    description
+  user(filter: { id: 2 }) {
+    name
+    email
+  }
+  user(filter: { id: 1 }) {
+    ...userFullInfo
   }
   users {
     id
@@ -16,8 +18,9 @@ query {
       description
     }
   }
-  user {
-    ...userFullInfo
+  profile(id: 1) {
+    id
+    description
   }
 }
 
@@ -26,8 +29,6 @@ fragment userFullInfo on User {
   name
   age
   email
-  salary
-  vip
   profile {
     id
     description
@@ -41,7 +42,10 @@ mutation {
       name
       age
     }
-
+    deleteUser(filter: { id: 2 }) {
+      id
+      name
+    }
     updateUser(id: 1, name: "Eu") {
       id
       name
