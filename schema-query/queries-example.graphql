@@ -1,0 +1,39 @@
+query {
+  hello
+  dateNow
+  user(id: 1) {
+    id
+    name
+  }
+  users {
+    id
+    name
+    profile {
+      description
+    }
+  }
+  user {
+    ...userFullInfo
+  }
+  profile(id: 1) {
+    id
+    description
+  }
+  profile(id: 12) {
+    id
+    description
+  }
+}
+
+fragment userFullInfo on User {
+  id
+  name
+  age
+  email
+  salary
+  vip
+  profile {
+    id
+    description
+  }
+}
