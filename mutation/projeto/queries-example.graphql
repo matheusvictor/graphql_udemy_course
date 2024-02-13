@@ -46,7 +46,10 @@ mutation {
       id
       name
     }
-    updateUser(id: 1, name: "Eu") {
+    updateUser(
+      filter: { id: 2 }
+      userData: { name: "Mariana", email: "mariana@email.com", age: 30 }
+    ) {
       id
       name
       email
