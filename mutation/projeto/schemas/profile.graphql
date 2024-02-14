@@ -1,4 +1,13 @@
 type Profile {
-    id: Int!
-    description: String!
+  id: Int!
+  description: String!
+}
+
+input ProfileInput {
+  description: String!
+}
+
+input ProfileFilter {
+  id: Int
+  description: String
 }
